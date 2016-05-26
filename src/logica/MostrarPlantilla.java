@@ -13,8 +13,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.netbeans.xml.schema.cartel.TipoPlantilla;
+import pantallas.CambioPlantilla;
 import pantallas.Plantilla1;
-
+import pantallas.Plantilla2;
 
 /**
  *
@@ -22,9 +23,10 @@ import pantallas.Plantilla1;
  */
 public class MostrarPlantilla {
 
+    public static String fndCabecera, imgCabecera, fndPrincipal, imgPrincipal, fndPie;
+    public static List<String> sponsors;
+
     public static void main(String[] args) {
-     String fndCabecera,imgCabecera,fndPrincipal,imgPrincipal,fndPie;
-     List<String> sponsors;
 
         try {
 
@@ -35,8 +37,6 @@ public class MostrarPlantilla {
     implementar las operaciones del JAXB binding framework como unmarshal y marshal
     unmarshal: consiste en convertir datos XML en un árbol de objetos Java
     marshal: consiste en convertir un árbol de objetos Java a datos XML*/
-            
-            
             System.out.println("inicio mostrar plantilla");
             JAXBContext jaxbContext = JAXBContext.newInstance("org.netbeans.xml.schema.cartel");
             System.out.println("instancié el paquete que contiene las clases generadas");
@@ -49,23 +49,18 @@ public class MostrarPlantilla {
             /*JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                                new FileInputStream(System.getProperty("user.home")
                                + System.getProperty("file.separator") + "albaran.xml"));*/
-            
             JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                     new FileInputStream("C:\\Users\\Miguel\\Documents"
                             + "\\NetBeansProjects\\Carteles1\\src\\"
                             + "carteles\\cartel.xml"));
-            
 
-
-/* Elmétodo getValue() retorna el modelo de contenido (content model) y el valor de los atributos del elemento
+            /* Elmétodo getValue() retorna el modelo de contenido (content model) y el valor de los atributos del elemento
             PedidoType pedidoType = (PedidoType) jaxbElement.getValue();*/
-
             // Obtenemos una instancia de tipo Plantilla para obtener un Objeto 
             //de tipo Plantilla
             TipoPlantilla cartel = (TipoPlantilla) jaxbElement.getValue();
             // Establecemos los datos
-           
-            
+
             fndCabecera = cartel.getCabecera().getFondo();
             imgCabecera = cartel.getCabecera().getImagen();
             fndPrincipal = cartel.getPrincipal().getFondo();
@@ -73,10 +68,9 @@ public class MostrarPlantilla {
             fndPie = cartel.getPie().getFondo();
             sponsors = cartel.getPie().getSponsor();
             
-            //Creo una platilla
-            Plantilla1 plantilla1 = new Plantilla1(fndCabecera,imgCabecera,
-            fndPrincipal,imgPrincipal,fndPie,sponsors);
-            plantilla1.setVisible(true);
+            //Muestro la ventana de seleccion de plantilla
+            new CambioPlantilla().setVisible(true);
+
 
             // Crear un objeto de tipo Marshaller para posteriormente convertir un
             // el árbol de objetos Java a datos XML
