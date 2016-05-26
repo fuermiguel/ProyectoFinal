@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,7 +17,7 @@ import javax.swing.JLabel;
  *
  * @author Miguel
  */
-public class Plantilla2 extends javax.swing.JFrame {
+public class Plantilla2 extends javax.swing.JInternalFrame{
 
     private String fndCabecera, imgCabecera,
             fndPrincipal, imgPrincipal, fndPie;

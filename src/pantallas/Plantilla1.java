@@ -18,7 +18,7 @@ import javax.swing.JLabel;
  *
  * @author Miguel
  */
-public class Plantilla1 extends javax.swing.JFrame {
+public class Plantilla1  extends javax.swing.JInternalFrame {
 
     private String fndCabecera, imgCabecera,
             fndPrincipal, imgPrincipal, fndPie;

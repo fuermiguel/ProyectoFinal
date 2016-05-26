@@ -5,8 +5,6 @@
  */
 package pantallas;
 
-import logica.MostrarPlantilla;
-
 /**
  *
  * @author Miguel
@@ -74,22 +72,22 @@ public class CambioPlantilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_plantilla1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_plantilla1ActionPerformed
-       Plantilla1 plantilla1 = new Plantilla1(MostrarPlantilla.fndCabecera, 
-               MostrarPlantilla.imgCabecera,
-                    MostrarPlantilla.fndPrincipal, 
-               MostrarPlantilla.imgPrincipal, 
-               MostrarPlantilla.fndPie, MostrarPlantilla.sponsors);
-            plantilla1.setVisible(true);
+    /*   Plantilla1 plantilla1 = new Plantilla1(MostrarCartel.fndCabecera, 
+               MostrarCartel.imgCabecera,
+                    MostrarCartel.fndPrincipal, 
+               MostrarCartel.imgPrincipal, 
+               MostrarCartel.fndPie, MostrarCartel.sponsors);
+            plantilla1.setVisible(true);*/
     }//GEN-LAST:event_btn_plantilla1ActionPerformed
 
     private void btn_plantilla2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_plantilla2ActionPerformed
  
-        Plantilla2 plantilla2 = new Plantilla2(MostrarPlantilla.fndCabecera, 
-               MostrarPlantilla.imgCabecera,
-                    MostrarPlantilla.fndPrincipal, 
-               MostrarPlantilla.imgPrincipal, 
-               MostrarPlantilla.fndPie, MostrarPlantilla.sponsors);
-            plantilla2.setVisible(true);
+     /*   Plantilla2 plantilla2 = new Plantilla2(MostrarCartel.fndCabecera, 
+               MostrarCartel.imgCabecera,
+                    MostrarCartel.fndPrincipal, 
+               MostrarCartel.imgPrincipal, 
+               MostrarCartel.fndPie, MostrarCartel.sponsors);
+            plantilla2.setVisible(true);*/
     }//GEN-LAST:event_btn_plantilla2ActionPerformed
 
    
