@@ -14,6 +14,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.netbeans.xml.schema.cartel.TipoPlantilla;
 import pantallas.Plantilla1;
+import pantallas.Plantilla2;
 
 /**
  *
@@ -24,9 +25,11 @@ public class MostrarCartel {
     public String fndCabecera, imgCabecera, fndPrincipal, imgPrincipal, fndPie;
     public List<String> sponsors;
     private String nombreCartel;
+    private int tipoPlantilla;
 
-    public MostrarCartel(String nombreCartel) {
+    public MostrarCartel(String nombreCartel, int tipoPlantilla) {
         this.nombreCartel = nombreCartel;
+        this.tipoPlantilla = tipoPlantilla;
         cargaCartel(nombreCartel);
     }
 
@@ -52,12 +55,11 @@ public class MostrarCartel {
             /*JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                                new FileInputStream(System.getProperty("user.home")
                                + System.getProperty("file.separator") + "albaran.xml"));*/
-           
-       /*     JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
+ /*     JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                     new FileInputStream("C:\\Users\\Miguel\\Documents"
                             + "\\NetBeansProjects\\Carteles1\\src\\"
                             + "carteles\\" + nombreCartel + ".xml"));*/
-        JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
+            JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                     new FileInputStream("src\\carteles\\" + nombreCartel + ".xml"));
 
             /* Elmétodo getValue() retorna el modelo de contenido (content model) y el valor de los atributos del elemento
@@ -75,12 +77,21 @@ public class MostrarCartel {
             sponsors = cartel.getPie().getSponsor();
 
             //Muestro la ventana de seleccion de plantilla
-            //new CambioPlantilla().setVisible(true);
-            Plantilla1 plantilla1 = new Plantilla1(fndCabecera, imgCabecera,
-                    fndPrincipal, imgPrincipal, fndPie, sponsors);
+            switch (tipoPlantilla) {
+                case 0: {
+                    Plantilla1 plantilla1 = new Plantilla1(fndCabecera, imgCabecera,
+                            fndPrincipal, imgPrincipal, fndPie, sponsors);
+                    plantilla1.setVisible(true);
+                    break;
+                }
+                case 1: {
+                    Plantilla2 plantilla2 = new Plantilla2(fndCabecera, imgCabecera,
+                            fndPrincipal, imgPrincipal, fndPie, sponsors);
+                    plantilla2.setVisible(true);
+                    break;
+                }
 
-            //desktopPane.add(plantilla1);
-            plantilla1.show();
+            }
 
             // Crear un objeto de tipo Marshaller para posteriormente convertir un
             // el árbol de objetos Java a datos XML

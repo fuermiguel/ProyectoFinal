@@ -1,24 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <!--
-Guarda la información del cartel(No la estructura)
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
 -->
-<schema xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-    xsi:schemaLocation='http://xml.netbeans.org/schema/plantilla plantilla.xsd'>
 
-<plantilla>
-    <fondo color="blue">
-        <cabecera>cabecera1.png</cabecera>
-    </fondo>
-    <fondo color="blue">
-        blue <principal>principal1.png</principal>
-    </fondo>
-    <fondo color="blue">
-        <pie>
-            <sponsor>sponsor1.png</sponsor>
-            <sponsor>sponsor2.png</sponsor>
-            <sponsor>sponsor3.png</sponsor>
-            <sponsor>sponsor4.png</sponsor>
-        </pie>
-    </fondo>
-</plantilla>
-</schema>
+
+<ns1:plantilla
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://xml.netbeans.org/schema/cartel'
+    xsi:schemaLocation='http://xml.netbeans.org/schema/cartel cartel.xsd'>
+    <ns1:cabecera>
+        <ns1:imagen>cabecera1.png</ns1:imagen>
+        <ns1:fondo>blue</ns1:fondo>
+    </ns1:cabecera>
+    <ns1:principal>
+        <ns1:imagen>principal1.png</ns1:imagen>
+        <ns1:fondo>blue</ns1:fondo>
+    </ns1:principal>
+    <ns1:pie>
+        <ns1:sponsor>sponsor1.png</ns1:sponsor>
+        <ns1:sponsor>sponsor2.png</ns1:sponsor>
+        <ns1:sponsor>sponsor3.png</ns1:sponsor>
+        <ns1:sponsor>sponsor4.png</ns1:sponsor>
+        <ns1:fondo>blue</ns1:fondo>
+    </ns1:pie>
+
+</ns1:plantilla>

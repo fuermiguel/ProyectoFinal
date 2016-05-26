@@ -12,13 +12,14 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Miguel
  */
-public class Plantilla1  extends javax.swing.JInternalFrame {
+public class Plantilla1  extends JFrame {
 
     private String fndCabecera, imgCabecera,
             fndPrincipal, imgPrincipal, fndPie;
@@ -30,6 +31,7 @@ public class Plantilla1  extends javax.swing.JInternalFrame {
     public Plantilla1(String fndCabecera, String imgCabecera,
             String fndPrincipal, String imgPrincipal, String fndPie, List<String> sponsors) {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.fndCabecera = fndCabecera;
         this.imgCabecera = imgCabecera;
         this.fndPrincipal = fndPrincipal;

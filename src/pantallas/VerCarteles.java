@@ -161,9 +161,11 @@ public class VerCarteles extends javax.swing.JInternalFrame {
 
     private void btn_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verActionPerformed
         // si está seleccionado un cartel lo mostramos
-        if (!lst_nombresCarteles.isSelectionEmpty()) {
+        if (!lst_nombresCarteles.isSelectionEmpty() &&  
+                cbo_tipoPlantilla.getSelectedIndex()!= -1) {
 
-            new MostrarCartel(lst_nombresCarteles.getSelectedValue());
+            new MostrarCartel(lst_nombresCarteles.getSelectedValue(),
+                    cbo_tipoPlantilla.getSelectedIndex());
         }
     }//GEN-LAST:event_btn_verActionPerformed
 
