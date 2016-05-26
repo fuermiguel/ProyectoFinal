@@ -6,6 +6,7 @@ package logica;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -23,6 +24,7 @@ public class MostrarPlantilla {
 
     public static void main(String[] args) {
      String fndCabecera,imgCabecera,fndPrincipal,imgPrincipal,fndPie;
+     List<String> sponsors;
 
         try {
 
@@ -69,11 +71,11 @@ public class MostrarPlantilla {
             fndPrincipal = cartel.getPrincipal().getFondo();
             imgPrincipal = cartel.getPrincipal().getImagen();
             fndPie = cartel.getPie().getFondo();
-            cartel.getPie().getSponsor();
+            sponsors = cartel.getPie().getSponsor();
             
             //Creo una platilla
             Plantilla1 plantilla1 = new Plantilla1(fndCabecera,imgCabecera,
-            fndPrincipal,imgPrincipal,fndPie);
+            fndPrincipal,imgPrincipal,fndPie,sponsors);
             plantilla1.setVisible(true);
 
             // Crear un objeto de tipo Marshaller para posteriormente convertir un
