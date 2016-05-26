@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://xml.netbeans.org/schema/cartel"
+    xmlns:tns="http://xml.netbeans.org/schema/cartel"
+    elementFormDefault="qualified">
+    <xsd:complexType name="tipoPie">
+        <xsd:sequence>
+            <xsd:element name="sponsor" maxOccurs="unbounded" type="xsd:string"/>
+            <xsd:element name="fondo" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="tipoCabecera">
+        <xsd:sequence>
+            <xsd:element name="imagen" type="xsd:string"/>
+            <xsd:element name="fondo" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="tipoPrincipal">
+        <xsd:sequence>
+            <xsd:element name="imagen" type="xsd:string"/>
+            <xsd:element name="fondo" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="tipoPlantilla">
+        <xsd:sequence>
+            <xsd:element name="cabecera" type="tns:tipoCabecera"/>
+            <xsd:element name="principal" type="tns:tipoPrincipal"/>
+            <xsd:element name="pie" type="tns:tipoPie"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="plantilla" type="tns:tipoPlantilla"/>
+</xsd:schema>
