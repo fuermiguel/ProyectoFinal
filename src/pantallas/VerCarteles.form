@@ -36,7 +36,7 @@
                           <Component id="jScrollPane1" min="-2" pref="156" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" pref="20" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lbl_imagenPlantilla" min="-2" pref="171" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -47,7 +47,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,7 +66,7 @@
                   <Component id="lbl_imagenPlantilla" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btn_ver" pref="26" max="32767" attributes="0"/>
+              <Component id="btn_ver" pref="31" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

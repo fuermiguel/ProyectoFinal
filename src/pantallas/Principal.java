@@ -122,14 +122,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void mnuit_crearCartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuit_crearCartelActionPerformed
-        // TODO add your handling code here:
+         CrearCartel crearCartel = new CrearCartel();
+        desktopPane.add(crearCartel);
+        crearCartel.show();
     }//GEN-LAST:event_mnuit_crearCartelActionPerformed
 
     private void mnuit_verCartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuit_verCartelActionPerformed
         VerCarteles verCarteles = new VerCarteles();
         desktopPane.add(verCarteles);
         verCarteles.show();
-        System.out.println("Dentro de ver carteles");
+       // System.out.println("Dentro de ver carteles");
     }//GEN-LAST:event_mnuit_verCartelActionPerformed
 
     /**
