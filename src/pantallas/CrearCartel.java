@@ -5,17 +5,41 @@
  */
 package pantallas;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Miguel
  */
 public class CrearCartel extends javax.swing.JInternalFrame {
 
+    DefaultListModel modelo;
+
     /**
      * Creates new form CrearCartel
      */
     public CrearCartel() {
         initComponents();
+        llenarComboSoponsors();
+        generarModeloListaSponsors();
+    }
+
+    private void generarModeloListaSponsors() {
+        modelo = new DefaultListModel();
+    }
+
+    private void llenarComboSoponsors() {
+        cbx_seleccionarSponsor.addItem("adidas.png");
+        cbx_seleccionarSponsor.addItem("cocacola.png");
+        cbx_seleccionarSponsor.addItem("rebook.png");
+        cbx_seleccionarSponsor.addItem("redbull.png");
     }
 
     /**
@@ -27,7 +51,7 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
+        fileChooser = new javax.swing.JFileChooser();
         btn_elegirArchivo = new javax.swing.JButton();
         btn_anadirCabecera = new javax.swing.JButton();
         btn_anadirPrincipal = new javax.swing.JButton();
@@ -44,12 +68,20 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         btn_salir = new javax.swing.JButton();
         btn_colorFondo = new javax.swing.JButton();
         txt_colorFondo = new javax.swing.JTextField();
+        btn_quitarEsponsorLista = new javax.swing.JButton();
+
+        fileChooser.setFileFilter(new MiFiltro());
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Crear cartel");
 
         btn_elegirArchivo.setText("Elegir Archivo");
+        btn_elegirArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elegirArchivoActionPerformed(evt);
+            }
+        });
 
         btn_anadirCabecera.setText("Añadir Cabecera");
 
@@ -57,19 +89,26 @@ public class CrearCartel extends javax.swing.JInternalFrame {
 
         btn_anadirPie.setText("Añadir Pie");
 
-        cbx_seleccionarSponsor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_seleccionarSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_seleccionarSponsorActionPerformed(evt);
+            }
+        });
 
         lbl_PrevisualizarSponsor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_PrevisualizarSponsor.setText("Previsualizar imagen");
-        lbl_PrevisualizarSponsor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbl_PrevisualizarSponsor.setAlignmentY(0.0F);
+        lbl_PrevisualizarSponsor.setBorder(new javax.swing.border.MatteBorder(null));
+        lbl_PrevisualizarSponsor.setPreferredSize(new java.awt.Dimension(98, 94));
 
         btn_anadirSponsor.setText(">");
-
-        lst_sponsorsSelecionados.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        btn_anadirSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anadirSponsorActionPerformed(evt);
+            }
         });
+
+        lst_sponsorsSelecionados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jScrollPane1.setViewportView(lst_sponsorsSelecionados);
 
         btn_guardar.setText("Guardar");
@@ -88,6 +127,13 @@ public class CrearCartel extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_quitarEsponsorLista.setText("<");
+        btn_quitarEsponsorLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_quitarEsponsorListaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,22 +142,26 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_elegirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_elegirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_anadirCabecera, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_anadirPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_anadirPie, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(btn_anadirPie, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbx_seleccionarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_PrevisualizarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbl_PrevisualizarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_anadirSponsor)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_anadirSponsor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_quitarEsponsorLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btn_principal, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_pie, javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,10 +197,12 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbx_seleccionarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_PrevisualizarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_PrevisualizarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(btn_anadirSponsor))
+                        .addComponent(btn_anadirSponsor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_quitarEsponsorLista))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_colorFondo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -167,7 +219,7 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_colorFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_colorFondoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btn_colorFondoActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
@@ -175,6 +227,56 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
 
+    private void btn_elegirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elegirArchivoActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            txt_cabecera.setText(file.getAbsolutePath());
+
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+    }//GEN-LAST:event_btn_elegirArchivoActionPerformed
+
+    private void cbx_seleccionarSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_seleccionarSponsorActionPerformed
+        lbl_PrevisualizarSponsor.setSize(94, 94);
+        ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + cbx_seleccionarSponsor.getSelectedItem());
+        Icon iconoSponsor;
+        iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
+                lbl_PrevisualizarSponsor.getWidth(), lbl_PrevisualizarSponsor.getHeight(),
+                Image.SCALE_DEFAULT));
+
+        lbl_PrevisualizarSponsor.setIcon(iconoSponsor);
+    }//GEN-LAST:event_cbx_seleccionarSponsorActionPerformed
+
+    private void btn_anadirSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anadirSponsorActionPerformed
+        if (cbx_seleccionarSponsor.getSelectedIndex() != -1) {
+            modelo.addElement(cbx_seleccionarSponsor.getSelectedItem());
+           lst_sponsorsSelecionados.setModel(modelo);
+        }
+    }//GEN-LAST:event_btn_anadirSponsorActionPerformed
+
+    private void btn_quitarEsponsorListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitarEsponsorListaActionPerformed
+         if (!lst_sponsorsSelecionados.isSelectionEmpty()) {
+            modelo.removeElement(lst_sponsorsSelecionados.getSelectedValue());
+           lst_sponsorsSelecionados.setModel(modelo);
+        }
+    }//GEN-LAST:event_btn_quitarEsponsorListaActionPerformed
+    class MiFiltro extends javax.swing.filechooser.FileFilter {
+
+        @Override
+        public boolean accept(File file) {
+            // Allow only directories, or files with ".txt" extension
+            return file.isDirectory() || file.getAbsolutePath().endsWith(".png");
+        }
+
+        @Override
+        public String getDescription() {
+            // This description will be displayed in the dialog,
+            // hard-coded = ugly, should be done via I18N
+            return "Text documents (*.png)";
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_anadirCabecera;
@@ -186,9 +288,10 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JTextField btn_pie;
     private javax.swing.JTextField btn_principal;
+    private javax.swing.JButton btn_quitarEsponsorLista;
     private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox<String> cbx_seleccionarSponsor;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_PrevisualizarSponsor;
     private javax.swing.JList<String> lst_sponsorsSelecionados;

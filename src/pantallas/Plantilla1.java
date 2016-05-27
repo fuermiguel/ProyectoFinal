@@ -73,7 +73,7 @@ public class Plantilla1  extends JFrame {
         //relleno los sponsors de izquierda a derecha
         int i= 0;
         for(String sponsor : sponsors){          
-         ImageIcon imagenSponsor = new ImageIcon("imagenes/" + sponsor);
+         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
          Icon iconoSponsor;
              iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                       etiquetas.get(i).getWidth(), etiquetas.get(i).getHeight(),

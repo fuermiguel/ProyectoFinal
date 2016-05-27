@@ -19,10 +19,10 @@ and open the template in the editor.
         <ns1:fondo>blue</ns1:fondo>
     </ns1:principal>
     <ns1:pie>
-        <ns1:sponsor>sponsor1.png</ns1:sponsor>
-        <ns1:sponsor>sponsor2.png</ns1:sponsor>
-        <ns1:sponsor>sponsor3.png</ns1:sponsor>
-        <ns1:sponsor>sponsor4.png</ns1:sponsor>
+        <ns1:sponsor>rebook.png</ns1:sponsor>
+        <ns1:sponsor>adidas.png</ns1:sponsor>
+        <ns1:sponsor>cocacola.png</ns1:sponsor>
+        <ns1:sponsor>redbull.png</ns1:sponsor>
         <ns1:fondo>blue</ns1:fondo>
     </ns1:pie>
 
