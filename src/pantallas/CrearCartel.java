@@ -5,14 +5,28 @@
  */
 package pantallas;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import logica.CrearCartelxml;
+import objetos.Cartel;
 
 /**
  *
@@ -20,7 +34,11 @@ import javax.swing.JFileChooser;
  */
 public class CrearCartel extends javax.swing.JInternalFrame {
 
-    DefaultListModel modelo;
+    private DefaultListModel modelo;
+    private  String imagenCabecera = "";
+    private String imagenPrincipal = "";
+    private String imagenPie ;
+    private  String colorFondo = "";
 
     /**
      * Creates new form CrearCartel
@@ -52,13 +70,9 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         fileChooser = new javax.swing.JFileChooser();
-        btn_elegirArchivo = new javax.swing.JButton();
         btn_anadirCabecera = new javax.swing.JButton();
         btn_anadirPrincipal = new javax.swing.JButton();
         btn_anadirPie = new javax.swing.JButton();
-        txt_cabecera = new javax.swing.JTextField();
-        btn_principal = new javax.swing.JTextField();
-        btn_pie = new javax.swing.JTextField();
         cbx_seleccionarSponsor = new javax.swing.JComboBox<>();
         lbl_PrevisualizarSponsor = new javax.swing.JLabel();
         btn_anadirSponsor = new javax.swing.JButton();
@@ -69,6 +83,10 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         btn_colorFondo = new javax.swing.JButton();
         txt_colorFondo = new javax.swing.JTextField();
         btn_quitarEsponsorLista = new javax.swing.JButton();
+        lbl_cabecera = new javax.swing.JLabel();
+        lbl_principal = new javax.swing.JLabel();
+        lbl_pie = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         fileChooser.setFileFilter(new MiFiltro());
 
@@ -76,18 +94,26 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Crear cartel");
 
-        btn_elegirArchivo.setText("Elegir Archivo");
-        btn_elegirArchivo.addActionListener(new java.awt.event.ActionListener() {
+        btn_anadirCabecera.setText("Añadir Cabecera");
+        btn_anadirCabecera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_elegirArchivoActionPerformed(evt);
+                btn_anadirCabeceraActionPerformed(evt);
             }
         });
 
-        btn_anadirCabecera.setText("Añadir Cabecera");
-
         btn_anadirPrincipal.setText("Añadir Principal");
+        btn_anadirPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anadirPrincipalActionPerformed(evt);
+            }
+        });
 
         btn_anadirPie.setText("Añadir Pie");
+        btn_anadirPie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anadirPieActionPerformed(evt);
+            }
+        });
 
         cbx_seleccionarSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +138,11 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(lst_sponsorsSelecionados);
 
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         btn_salir.setText("Salir");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
@@ -134,23 +165,22 @@ public class CrearCartel extends javax.swing.JInternalFrame {
             }
         });
 
+        lbl_cabecera.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lbl_principal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lbl_pie.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setText("Sponsors");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_elegirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_anadirCabecera, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_anadirPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_anadirPie, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbx_seleccionarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -161,38 +191,54 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                                     .addComponent(btn_quitarEsponsorLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btn_principal, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_pie, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_colorFondo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btn_guardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_salir))
-                    .addComponent(txt_colorFondo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_cabecera))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_anadirCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btn_anadirPrincipal))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(7, 7, 7)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_anadirPie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_pie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_colorFondo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_guardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_salir))
+                            .addComponent(txt_colorFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_elegirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_anadirCabecera)
-                            .addComponent(txt_cabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_anadirPrincipal)
-                            .addComponent(btn_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_anadirPie)
-                            .addComponent(btn_pie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_anadirCabecera)
+                    .addComponent(btn_anadirPrincipal)
+                    .addComponent(btn_anadirPie))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_pie, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_cabecera, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbx_seleccionarSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,37 +252,27 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_colorFondo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_colorFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_colorFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_guardar)
                             .addComponent(btn_salir)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_colorFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_colorFondoActionPerformed
-
+        ColorChooserDemo elegirColor = new ColorChooserDemo();
+        elegirColor.createAndShowGUI();
     }//GEN-LAST:event_btn_colorFondoActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
-
-    private void btn_elegirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elegirArchivoActionPerformed
-        int returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            txt_cabecera.setText(file.getAbsolutePath());
-
-        } else {
-            System.out.println("File access cancelled by user.");
-        }
-    }//GEN-LAST:event_btn_elegirArchivoActionPerformed
 
     private void cbx_seleccionarSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_seleccionarSponsorActionPerformed
         lbl_PrevisualizarSponsor.setSize(94, 94);
@@ -252,16 +288,89 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private void btn_anadirSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anadirSponsorActionPerformed
         if (cbx_seleccionarSponsor.getSelectedIndex() != -1) {
             modelo.addElement(cbx_seleccionarSponsor.getSelectedItem());
-           lst_sponsorsSelecionados.setModel(modelo);
+            lst_sponsorsSelecionados.setModel(modelo);
         }
     }//GEN-LAST:event_btn_anadirSponsorActionPerformed
 
     private void btn_quitarEsponsorListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitarEsponsorListaActionPerformed
-         if (!lst_sponsorsSelecionados.isSelectionEmpty()) {
+        if (!lst_sponsorsSelecionados.isSelectionEmpty()) {
             modelo.removeElement(lst_sponsorsSelecionados.getSelectedValue());
-           lst_sponsorsSelecionados.setModel(modelo);
+            lst_sponsorsSelecionados.setModel(modelo);
         }
     }//GEN-LAST:event_btn_quitarEsponsorListaActionPerformed
+
+    private void btn_anadirCabeceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anadirCabeceraActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            imagenCabecera = file.getAbsolutePath();
+            //lbl_previsualizar.setSize(94, 94);
+            ImageIcon imagenSponsor = new ImageIcon(imagenCabecera);
+            Icon iconoSponsor;
+            iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
+                    lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
+                    Image.SCALE_DEFAULT));
+
+            lbl_cabecera.setIcon(iconoSponsor);
+
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+    }//GEN-LAST:event_btn_anadirCabeceraActionPerformed
+
+    private void btn_anadirPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anadirPrincipalActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            imagenPrincipal  = file.getAbsolutePath();
+             //lbl_previsualizar.setSize(94, 94);
+            ImageIcon imagenSponsor = new ImageIcon(imagenPrincipal);
+            Icon iconoSponsor;
+            iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
+                    lbl_principal.getWidth(), lbl_principal.getHeight(),
+                    Image.SCALE_DEFAULT));
+
+            lbl_principal.setIcon(iconoSponsor);
+
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+    }//GEN-LAST:event_btn_anadirPrincipalActionPerformed
+
+    private void btn_anadirPieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anadirPieActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            imagenPie = file.getAbsolutePath();
+             //lbl_previsualizar.setSize(94, 94);
+            ImageIcon imagenSponsor = new ImageIcon(imagenPie);
+            Icon iconoSponsor;
+            iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
+                    lbl_pie.getWidth(), lbl_pie.getHeight(),
+                    Image.SCALE_DEFAULT));
+
+            lbl_pie.setIcon(iconoSponsor);
+
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+    }//GEN-LAST:event_btn_anadirPieActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        Cartel cartel = new Cartel();
+        cartel.setCabecera(imagenCabecera);
+        cartel.setPrincipal(imagenPrincipal);
+        cartel.setPie(imagenPie);
+        cartel.setColorFondo(colorFondo);
+        cartel.setSponsors(lst_sponsorsSelecionados.getSelectedValuesList());
+        
+        try {
+            new CrearCartelxml(cartel);
+        } catch (Throwable ex) {
+            Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No se creó el cartel ");
+        }
+    }//GEN-LAST:event_btn_guardarActionPerformed
     class MiFiltro extends javax.swing.filechooser.FileFilter {
 
         @Override
@@ -278,24 +387,68 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         }
     }
 
+    public class ColorChooserDemo extends JPanel
+            implements ChangeListener {
+
+        protected JColorChooser tcc;
+
+        public ColorChooserDemo() {
+            super(new BorderLayout());
+
+            tcc = new JColorChooser(Color.yellow);
+            tcc.getSelectionModel().addChangeListener(this);
+            tcc.setBorder(BorderFactory.createTitledBorder(
+                    "Choose Text Color"));
+
+            //add(bannerPanel, BorderLayout.CENTER);
+            add(tcc, BorderLayout.PAGE_END);
+        }
+
+        public void stateChanged(ChangeEvent e) {
+            colorFondo = tcc.getColor().toString();
+            txt_colorFondo.setBackground(tcc.getColor());
+        }
+
+        /**
+         * Create the GUI and show it. For thread safety, this method should be
+         * invoked from the event-dispatching thread.
+         */
+        public void createAndShowGUI() {
+            //Create and set up the window.
+            JFrame frame = new JFrame("ColorChooser");
+
+            frame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+            //Create and set up the content pane.
+            JComponent newContentPane = new ColorChooserDemo();
+            newContentPane.setOpaque(true); //content panes must be opaque
+            frame.setContentPane(newContentPane);
+
+            //Display the window.
+            frame.pack();
+            frame.setVisible(true);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_anadirCabecera;
     private javax.swing.JButton btn_anadirPie;
     private javax.swing.JButton btn_anadirPrincipal;
     private javax.swing.JButton btn_anadirSponsor;
     private javax.swing.JButton btn_colorFondo;
-    private javax.swing.JButton btn_elegirArchivo;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JTextField btn_pie;
-    private javax.swing.JTextField btn_principal;
     private javax.swing.JButton btn_quitarEsponsorLista;
     private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox<String> cbx_seleccionarSponsor;
     private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_PrevisualizarSponsor;
+    private javax.swing.JLabel lbl_cabecera;
+    private javax.swing.JLabel lbl_pie;
+    private javax.swing.JLabel lbl_principal;
     private javax.swing.JList<String> lst_sponsorsSelecionados;
-    private javax.swing.JTextField txt_cabecera;
     private javax.swing.JTextField txt_colorFondo;
     // End of variables declaration//GEN-END:variables
 }
