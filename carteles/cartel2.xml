@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<plantilla xmlns="http://xml.netbeans.org/schema/cartel">
+    <cabecera>
+        <imagen>adidas.png</imagen>
+        <fondo>java.awt.Color[r=102,g=102,b=0]</fondo>
+    </cabecera>
+    <principal>
+        <imagen>cocacola.png</imagen>
+        <fondo>java.awt.Color[r=102,g=102,b=0]</fondo>
+    </principal>
+    <pie>
+        <fondo>java.awt.Color[r=102,g=102,b=0]</fondo>
+    </pie>
+</plantilla>

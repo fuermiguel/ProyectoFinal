@@ -11,6 +11,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -35,10 +41,14 @@ import objetos.Cartel;
 public class CrearCartel extends javax.swing.JInternalFrame {
 
     private DefaultListModel modelo;
-    private  String imagenCabecera = "";
-    private String imagenPrincipal = "";
-    private String imagenPie ;
-    private  String colorFondo = "";
+    private String rutaImagenCabecera = "";
+    private String nombreImagenCabecera = "";
+    private String rutaImagenPrincipal = "";
+    private String nombreImagenPrincipal = "";
+    private String rutaImagenPie = "";
+    private String nombreImagenPie;
+
+    private String colorFondo = "";
 
     /**
      * Creates new form CrearCartel
@@ -276,7 +286,8 @@ public class CrearCartel extends javax.swing.JInternalFrame {
 
     private void cbx_seleccionarSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_seleccionarSponsorActionPerformed
         lbl_PrevisualizarSponsor.setSize(94, 94);
-        ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + cbx_seleccionarSponsor.getSelectedItem());
+        ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"+ 
+                System.getProperty("file.separator") + cbx_seleccionarSponsor.getSelectedItem());
         Icon iconoSponsor;
         iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                 lbl_PrevisualizarSponsor.getWidth(), lbl_PrevisualizarSponsor.getHeight(),
@@ -303,9 +314,10 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            imagenCabecera = file.getAbsolutePath();
+            rutaImagenCabecera = file.getAbsolutePath();
+            nombreImagenCabecera = file.getName();
             //lbl_previsualizar.setSize(94, 94);
-            ImageIcon imagenSponsor = new ImageIcon(imagenCabecera);
+            ImageIcon imagenSponsor = new ImageIcon(rutaImagenCabecera);
             Icon iconoSponsor;
             iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                     lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
@@ -322,9 +334,11 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            imagenPrincipal  = file.getAbsolutePath();
-             //lbl_previsualizar.setSize(94, 94);
-            ImageIcon imagenSponsor = new ImageIcon(imagenPrincipal);
+
+            rutaImagenPrincipal = file.getAbsolutePath();
+            nombreImagenPrincipal = file.getName();
+            //lbl_previsualizar.setSize(94, 94);
+            ImageIcon imagenSponsor = new ImageIcon(rutaImagenPrincipal);
             Icon iconoSponsor;
             iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                     lbl_principal.getWidth(), lbl_principal.getHeight(),
@@ -341,9 +355,10 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            imagenPie = file.getAbsolutePath();
-             //lbl_previsualizar.setSize(94, 94);
-            ImageIcon imagenSponsor = new ImageIcon(imagenPie);
+            rutaImagenPie = file.getAbsolutePath();
+            nombreImagenPie = file.getName();
+            //lbl_previsualizar.setSize(94, 94);
+            ImageIcon imagenSponsor = new ImageIcon(rutaImagenPie);
             Icon iconoSponsor;
             iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                     lbl_pie.getWidth(), lbl_pie.getHeight(),
@@ -357,19 +372,52 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_anadirPieActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        Cartel cartel = new Cartel();
-        cartel.setCabecera(imagenCabecera);
-        cartel.setPrincipal(imagenPrincipal);
-        cartel.setPie(imagenPie);
-        cartel.setColorFondo(colorFondo);
-        cartel.setSponsors(lst_sponsorsSelecionados.getSelectedValuesList());
-        
         try {
+            Cartel cartel = new Cartel();//Objeto que contiene toda la información del cartel.
+
+            /*
+            Al mismo tiempo que creo el cartel tehgo que guardar las imagenes 
+            seleccionadas en las carpetas correpondientes dentro del proyecto.
+             */
+            //Reemplazar si existe y atributos(opciones)
+            CopyOption[] options = new CopyOption[]{
+                StandardCopyOption.REPLACE_EXISTING,
+                StandardCopyOption.COPY_ATTRIBUTES
+            };
+            
+            Path fromCabecera = Paths.get(rutaImagenCabecera);
+            Path toCabecera = Paths.get("ImagenesCabecera" + 
+                    System.getProperty("file.separator") + nombreImagenCabecera);
+            Files.copy(fromCabecera, toCabecera, options);
+
+            cartel.setCabecera(nombreImagenCabecera);
+            
+            Path fromPrincipal = Paths.get(rutaImagenPrincipal);
+            Path toPrincipal = Paths.get("ImagenesPrincipal" + 
+                    System.getProperty("file.separator")+ nombreImagenPrincipal);
+            Files.copy(fromPrincipal, toPrincipal, options);
+            
+            cartel.setPrincipal(nombreImagenPrincipal);
+            
+            Path formPie = Paths.get(rutaImagenCabecera);
+            Path toPie = Paths.get("ImagenesPie"+  
+                    System.getProperty("file.separator") + nombreImagenPie);
+            Files.copy(formPie, toPie, options);
+            
+            cartel.setPie(nombreImagenPie);
+            
+            cartel.setColorFondo(colorFondo);
+            //Guardar las imagenes en la carpeta imagenes sponsor
+            cartel.setSponsors(lst_sponsorsSelecionados.getSelectedValuesList());
+
             new CrearCartelxml(cartel);
         } catch (Throwable ex) {
             Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No se creó el cartel ");
         }
+        /*} catch (IOException ex) {
+            Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
     }//GEN-LAST:event_btn_guardarActionPerformed
     class MiFiltro extends javax.swing.filechooser.FileFilter {
 

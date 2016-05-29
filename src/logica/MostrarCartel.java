@@ -60,7 +60,8 @@ public class MostrarCartel {
                             + "\\NetBeansProjects\\Carteles1\\src\\"
                             + "carteles\\" + nombreCartel + ".xml"));*/
             JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
-                    new FileInputStream("src\\carteles\\" + nombreCartel + ".xml"));
+                    new FileInputStream("carteles"+ System.getProperty("file.separator") +
+                            nombreCartel + ".xml"));
 
             /* Elmétodo getValue() retorna el modelo de contenido (content model) y el valor de los atributos del elemento
             PedidoType pedidoType = (PedidoType) jaxbElement.getValue();*/

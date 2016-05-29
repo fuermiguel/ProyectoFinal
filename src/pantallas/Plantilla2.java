@@ -47,14 +47,14 @@ public class Plantilla2 extends JFrame{
          pnl_fondoPiep1.setBackground(Color.BLUE);
       
         //Imgaen Cabecera 
-        ImageIcon cabecera = new ImageIcon("imagenes/"+ imgCabecera);
+        ImageIcon cabecera = new ImageIcon("ImagenesCabecera/"+ imgCabecera);
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
                  lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_cabecera.setIcon(iconoCabecera);
         
         //Imagen Principal
-         ImageIcon principal = new ImageIcon("imagenes/" + imgPrincipal);
+         ImageIcon principal = new ImageIcon("imagenesPrincipal/" + imgPrincipal);
          Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
                  lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -70,6 +70,7 @@ public class Plantilla2 extends JFrame{
         etiquetas.add(lbl_pie6);
         
         //relleno los sponsors de izquierda a derecha
+       /* 
         int i= 0;
         for(String sponsor : sponsors){          
          ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
@@ -82,7 +83,7 @@ public class Plantilla2 extends JFrame{
            
            i++;
         }
-         
+    */
     }
 
     /**
