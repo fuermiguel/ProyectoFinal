@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -20,11 +19,9 @@ import objetos.Cartel;
  *
  * @author Miguel
  */
-public class Plantilla1  extends JFrame {
-private Cartel plantilla;
-   /* private String fndCabecera, imgCabecera,
-            fndPrincipal, imgPrincipal, fndPie;
-    private List<String> sponsors;*/
+public class Plantilla1 extends JFrame{
+
+   private Cartel plantilla;
 
     /**
      * Creates new form MostrarPlantillas
@@ -32,15 +29,7 @@ private Cartel plantilla;
     public Plantilla1(Cartel plantilla) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        this.plantilla = plantilla;
-        /*
-        this.fndCabecera = fndCabecera;
-        this.imgCabecera = imgCabecera;
-        this.fndPrincipal = fndPrincipal;
-        this.imgPrincipal = imgPrincipal;
-        this.fndPie = fndPie;
-        this.sponsors = sponsors;
-        */
+       this.plantilla = plantilla;
         rellenarComponentes();
     }
     
@@ -51,14 +40,16 @@ private Cartel plantilla;
          pnl_fondoPiep1.setBackground(Color.BLUE);
       
         //Imgaen Cabecera 
-        ImageIcon cabecera = new ImageIcon("imagenes/"+ plantilla.getCabecera());
+        ImageIcon cabecera = new ImageIcon("ImagenesCabecera"+
+                System.getProperty("file.separator")+ plantilla.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
                  lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_cabecera.setIcon(iconoCabecera);
         
         //Imagen Principal
-         ImageIcon principal = new ImageIcon("imagenes/" + plantilla.getPrincipal());
+         ImageIcon principal = new ImageIcon("imagenesPrincipal"+
+                 System.getProperty("file.separator") + plantilla.getPrincipal());
          Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
                  lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -74,8 +65,9 @@ private Cartel plantilla;
         etiquetas.add(lbl_pie6);
         
         //relleno los sponsors de izquierda a derecha
+       /* 
         int i= 0;
-        for(String sponsor : plantilla.getSponsors()){          
+        for(String sponsor : sponsors){          
          ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
          Icon iconoSponsor;
              iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
@@ -86,7 +78,7 @@ private Cartel plantilla;
            
            i++;
         }
-         
+    */
     }
 
     /**
@@ -125,7 +117,7 @@ private Cartel plantilla;
             pnl_fondoCabeceraP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_fondoCabeceraP1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_fondoCabeceraP1Layout.setVerticalGroup(
@@ -146,14 +138,14 @@ private Cartel plantilla;
             pnl_fondoPrincipalP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_fondoPrincipalP1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
+                .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_fondoPrincipalP1Layout.setVerticalGroup(
             pnl_fondoPrincipalP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_fondoPrincipalP1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -177,31 +169,32 @@ private Cartel plantilla;
             pnl_fondoPiep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_fondoPiep1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(lbl_pie1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_pie1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbl_pie2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
+                .addComponent(lbl_pie2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbl_pie3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38)
+                .addGap(14, 14, 14)
                 .addComponent(lbl_pie4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
-                .addComponent(lbl_pie5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(53, 53, 53)
+                .addGap(29, 29, 29)
+                .addComponent(lbl_pie5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbl_pie6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(74, 74, 74))
+                .addGap(23, 23, 23))
         );
         pnl_fondoPiep1Layout.setVerticalGroup(
             pnl_fondoPiep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_fondoPiep1Layout.createSequentialGroup()
+            .addGroup(pnl_fondoPiep1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_fondoPiep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_pie5, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                    .addComponent(lbl_pie4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_pie1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_pie2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_pie3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_pie6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(pnl_fondoPiep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lbl_pie5, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                        .addComponent(lbl_pie2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_pie1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_pie3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_pie4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_pie6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,9 +204,9 @@ private Cartel plantilla;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_fondoPrincipalP1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnl_fondoCabeceraP1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_fondoPiep1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_fondoPrincipalP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnl_fondoPiep1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -223,9 +216,9 @@ private Cartel plantilla;
                 .addComponent(pnl_fondoCabeceraP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_fondoPrincipalP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_fondoPiep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addGap(27, 27, 27))
         );
 
         pack();
