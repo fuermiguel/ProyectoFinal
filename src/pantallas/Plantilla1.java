@@ -14,30 +14,33 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import objetos.Cartel;
 
 /**
  *
  * @author Miguel
  */
 public class Plantilla1  extends JFrame {
-
-    private String fndCabecera, imgCabecera,
+private Cartel plantilla;
+   /* private String fndCabecera, imgCabecera,
             fndPrincipal, imgPrincipal, fndPie;
-    private List<String> sponsors;
+    private List<String> sponsors;*/
 
     /**
      * Creates new form MostrarPlantillas
      */
-    public Plantilla1(String fndCabecera, String imgCabecera,
-            String fndPrincipal, String imgPrincipal, String fndPie, List<String> sponsors) {
+    public Plantilla1(Cartel plantilla) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.plantilla = plantilla;
+        /*
         this.fndCabecera = fndCabecera;
         this.imgCabecera = imgCabecera;
         this.fndPrincipal = fndPrincipal;
         this.imgPrincipal = imgPrincipal;
         this.fndPie = fndPie;
         this.sponsors = sponsors;
+        */
         rellenarComponentes();
     }
     
@@ -48,14 +51,14 @@ public class Plantilla1  extends JFrame {
          pnl_fondoPiep1.setBackground(Color.BLUE);
       
         //Imgaen Cabecera 
-        ImageIcon cabecera = new ImageIcon("imagenes/"+ imgCabecera);
+        ImageIcon cabecera = new ImageIcon("imagenes/"+ plantilla.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
                  lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_cabecera.setIcon(iconoCabecera);
         
         //Imagen Principal
-         ImageIcon principal = new ImageIcon("imagenes/" + imgPrincipal);
+         ImageIcon principal = new ImageIcon("imagenes/" + plantilla.getPrincipal());
          Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
                  lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -72,7 +75,7 @@ public class Plantilla1  extends JFrame {
         
         //relleno los sponsors de izquierda a derecha
         int i= 0;
-        for(String sponsor : sponsors){          
+        for(String sponsor : plantilla.getSponsors()){          
          ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
          Icon iconoSponsor;
              iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(

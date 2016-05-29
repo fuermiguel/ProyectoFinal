@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import objetos.Cartel;
 import org.netbeans.xml.schema.cartel.TipoPlantilla;
 import pantallas.Plantilla1;
 import pantallas.Plantilla2;
@@ -63,31 +64,28 @@ public class MostrarCartel {
                     new FileInputStream("carteles"+ System.getProperty("file.separator") +
                             nombreCartel + ".xml"));
 
-            /* Elmétodo getValue() retorna el modelo de contenido (content model) y el valor de los atributos del elemento
-            PedidoType pedidoType = (PedidoType) jaxbElement.getValue();*/
             // Obtenemos una instancia de tipo Plantilla para obtener un Objeto 
             //de tipo Plantilla
             TipoPlantilla cartel = (TipoPlantilla) jaxbElement.getValue();
             // Establecemos los datos
-
-            fndCabecera = cartel.getCabecera().getFondo();
-            imgCabecera = cartel.getCabecera().getImagen();
-            fndPrincipal = cartel.getPrincipal().getFondo();
-            imgPrincipal = cartel.getPrincipal().getImagen();
-            fndPie = cartel.getPie().getFondo();
-            sponsors = cartel.getPie().getSponsor();
+            Cartel plantilla = new Cartel();
+            plantilla.setColorFondo( cartel.getCabecera().getFondo());
+            plantilla.setCabecera(cartel.getCabecera().getImagen());
+            plantilla.setColorFondo(cartel.getPrincipal().getFondo());
+            plantilla.setPrincipal(cartel.getPrincipal().getImagen());
+            plantilla.setColorFondo(cartel.getPie().getFondo());
+            plantilla.setSponsors(cartel.getPie().getSponsor());
+           
 
             //Muestro la ventana de seleccion de plantilla
             switch (tipoPlantilla) {
                 case 0: {
-                    Plantilla1 plantilla1 = new Plantilla1(fndCabecera, imgCabecera,
-                            fndPrincipal, imgPrincipal, fndPie, sponsors);
+                    Plantilla1 plantilla1 = new Plantilla1(plantilla);
                     plantilla1.setVisible(true);
                     break;
                 }
                 case 1: {
-                    Plantilla2 plantilla2 = new Plantilla2(fndCabecera, imgCabecera,
-                            fndPrincipal, imgPrincipal, fndPie, sponsors);
+                    Plantilla2 plantilla2 = new Plantilla2(plantilla);
                     plantilla2.setVisible(true);
                     break;
                 }

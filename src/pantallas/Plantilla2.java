@@ -13,48 +13,61 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import logica.CadenaRGB;
+import objetos.Cartel;
 
 /**
  *
  * @author Miguel
  */
 public class Plantilla2 extends JFrame{
+    private Cartel plantilla;
 
-    private String fndCabecera, imgCabecera,
+  /* private String fndCabecera, imgCabecera,
             fndPrincipal, imgPrincipal, fndPie;
-    private List<String> sponsors;
+    private List<String> sponsors;*/
 
     /**
      * Creates new form MostrarPlantillas
      */
-    public Plantilla2(String fndCabecera, String imgCabecera,
-            String fndPrincipal, String imgPrincipal, String fndPie, List<String> sponsors) {
+    public Plantilla2(Cartel plantilla) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        this.fndCabecera = fndCabecera;
+       /* this.fndCabecera = fndCabecera;
         this.imgCabecera = imgCabecera;
         this.fndPrincipal = fndPrincipal;
         this.imgPrincipal = imgPrincipal;
         this.fndPie = fndPie;
-        this.sponsors = sponsors;
+        this.sponsors = sponsors;*/
+       this.plantilla = plantilla;
         rellenarComponentes();
     }
     
     private void rellenarComponentes() {
+        //Convertir String a RGB
+        CadenaRGB rgbCabecera = new CadenaRGB(plantilla.getColorFondo());
+        CadenaRGB rgbPincipal = new CadenaRGB(plantilla.getColorFondo());
+        CadenaRGB rgbPie = new CadenaRGB(plantilla.getColorFondo());
+        
         //Color de los fondos
-         pnl_fondoCabeceraP1.setBackground(Color.BLUE);
-         pnl_fondoPrincipalP1.setBackground(Color.BLUE);
-         pnl_fondoPiep1.setBackground(Color.BLUE);
+         pnl_fondoCabeceraP1.setBackground(
+                 new Color(rgbCabecera.getR(),rgbCabecera.getG(),rgbCabecera.getB()));
+         pnl_fondoPrincipalP1.setBackground(
+                 new Color(rgbPincipal.getR(),rgbPincipal.getG(),rgbPincipal.getB()));
+         pnl_fondoPiep1.setBackground(
+                 new Color(rgbPie.getR(),rgbPie.getG(),rgbPie.getB()));
       
         //Imgaen Cabecera 
-        ImageIcon cabecera = new ImageIcon("ImagenesCabecera/"+ imgCabecera);
+        ImageIcon cabecera = new ImageIcon("ImagenesCabecera"+  
+                System.getProperty("file.separator")+ plantilla.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
                  lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_cabecera.setIcon(iconoCabecera);
         
         //Imagen Principal
-         ImageIcon principal = new ImageIcon("imagenesPrincipal/" + imgPrincipal);
+         ImageIcon principal = new ImageIcon("imagenesPrincipal"+ 
+                 System.getProperty("file.separator") + plantilla.getPrincipal());
          Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
                  lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -70,10 +83,11 @@ public class Plantilla2 extends JFrame{
         etiquetas.add(lbl_pie6);
         
         //relleno los sponsors de izquierda a derecha
-       /* 
+      /*  
         int i= 0;
-        for(String sponsor : sponsors){          
-         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
+        for(String sponsor : plantilla.getSponsors()){          
+         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors" + 
+        System.getProperty("file.separator") + sponsor);
          Icon iconoSponsor;
              iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                       etiquetas.get(i).getWidth(), etiquetas.get(i).getHeight(),

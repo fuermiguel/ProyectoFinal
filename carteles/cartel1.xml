@@ -13,6 +13,7 @@ and open the template in the editor.
     <ns1:cabecera>
         <ns1:imagen>cabecera1.png</ns1:imagen>
         <ns1:fondo>blue</ns1:fondo>
+    </ns1:cabecera>
     <ns1:principal>
         <ns1:imagen>principal1.png</ns1:imagen>
         <ns1:fondo>blue</ns1:fondo>
