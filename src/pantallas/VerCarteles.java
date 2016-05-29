@@ -137,7 +137,8 @@ public class VerCarteles extends javax.swing.JInternalFrame {
     private void cbo_tipoPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_tipoPlantillaActionPerformed
         switch (cbo_tipoPlantilla.getSelectedIndex()) {
             case 0: {
-                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas/tipo1.PNG");
+                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"+ 
+                        System.getProperty("file.separator")+"tipo1.PNG");
                 Icon icon0;
                 icon0 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
                         lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight(),
@@ -147,7 +148,8 @@ public class VerCarteles extends javax.swing.JInternalFrame {
                 break;
             }
             case 1:
-                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas/tipo2.PNG");
+                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"+
+                        System.getProperty("file.separator")+"tipo2.PNG");
                 Icon icon1;
                 icon1 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
                         lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight(),
