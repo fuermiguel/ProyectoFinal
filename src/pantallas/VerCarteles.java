@@ -141,21 +141,26 @@ public class VerCarteles extends javax.swing.JInternalFrame {
                         System.getProperty("file.separator")+"tipo1.PNG");
                 Icon icon0;
                 icon0 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
-                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight(),
+                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight()-10,
                         Image.SCALE_DEFAULT));
 
                 lbl_imagenPlantilla.setIcon(icon0);
+               
                 break;
             }
             case 1:
+                
                 ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"+
                         System.getProperty("file.separator")+"tipo2.PNG");
                 Icon icon1;
+                
+                //El menos 10 es porque sino la etiqueta  crecia hacia abajo
                 icon1 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
-                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight(),
+                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight()-10,
                         Image.SCALE_DEFAULT));
-
+               
                 lbl_imagenPlantilla.setIcon(icon1);
+              
                 break;
         }
         btn_ver.setEnabled(true);
