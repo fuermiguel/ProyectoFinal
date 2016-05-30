@@ -5,6 +5,7 @@ package logica;
 
 import java.io.File;
 import java.io.FileInputStream;
+import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
@@ -58,8 +59,10 @@ public class CrearCartelxml {
         //Tengo que generar el número del cartel
         //Creamos el nuevo fichero con la nueva información
         File fichero = new File("carteles"
-                + System.getProperty("file.separator") + "cartel" + numeroCartel()+1 + ".xml");
+                + System.getProperty("file.separator") + "cartel" + numeroCartel() + ".xml");
         m.marshal(jaxbElement, fichero);
+        JOptionPane.showMessageDialog(null, "Cartel creado con exito.");
+        
 
         //Lo mostramos por salida estandar
         m.marshal(jaxbElement, System.out);
@@ -145,6 +148,6 @@ public class CrearCartelxml {
     private int numeroCartel() {
         //Leer el número de archivos de la carpeta carteles
         File file = new File("carteles" + System.getProperty("file.separator"));
-        return file.list().length;
+        return file.list().length+1;
     }
 }

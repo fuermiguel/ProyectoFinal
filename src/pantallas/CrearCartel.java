@@ -420,6 +420,8 @@ public class CrearCartel extends javax.swing.JInternalFrame {
             cartel.setSponsors(listaSponsors);
 
             new CrearCartelxml(cartel);
+            
+            this.dispose();
 
         } catch (Throwable ex) {
             Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,7 +5,6 @@
  */
 package pantallas;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +37,9 @@ public class Plantilla1 extends JFrame{
          pnl_fondoCabeceraP1.setBackground(plantilla.getColorFondo());
          pnl_fondoPrincipalP1.setBackground(plantilla.getColorFondo());
          pnl_fondoPiep1.setBackground(plantilla.getColorFondo());
-      
-        //Imgaen Cabecera 
+         this.getContentPane().setBackground(plantilla.getColorFondo());
+         
+        //Imagen Cabecera 
         ImageIcon cabecera = new ImageIcon("ImagenesCabecera"+
                 System.getProperty("file.separator")+ plantilla.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
@@ -108,17 +108,13 @@ public class Plantilla1 extends JFrame{
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
-        pnl_fondoCabeceraP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_cabecera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         javax.swing.GroupLayout pnl_fondoCabeceraP1Layout = new javax.swing.GroupLayout(pnl_fondoCabeceraP1);
         pnl_fondoCabeceraP1.setLayout(pnl_fondoCabeceraP1Layout);
         pnl_fondoCabeceraP1Layout.setHorizontalGroup(
             pnl_fondoCabeceraP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_fondoCabeceraP1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_fondoCabeceraP1Layout.setVerticalGroup(
@@ -128,10 +124,6 @@ public class Plantilla1 extends JFrame{
                 .addComponent(lbl_cabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pnl_fondoPrincipalP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_principal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_fondoPrincipalP1Layout = new javax.swing.GroupLayout(pnl_fondoPrincipalP1);
         pnl_fondoPrincipalP1.setLayout(pnl_fondoPrincipalP1Layout);
@@ -149,20 +141,6 @@ public class Plantilla1 extends JFrame{
                 .addComponent(lbl_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pnl_fondoPiep1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbl_pie6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout pnl_fondoPiep1Layout = new javax.swing.GroupLayout(pnl_fondoPiep1);
         pnl_fondoPiep1.setLayout(pnl_fondoPiep1Layout);

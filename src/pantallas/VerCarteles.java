@@ -6,6 +6,7 @@
 package pantallas;
 
 import java.awt.Image;
+import java.io.File;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -31,14 +32,13 @@ public class VerCarteles extends javax.swing.JInternalFrame {
     metiendo los datos a pelo. habria que cogerlos de la base de datos.
      */
     private void listarCarteles() {
-
+        //Leer el nombre de los archivos en carteles
+        File file = new File("carteles" +  System.getProperty("file.separator"));
+       
         DefaultListModel modelo = new DefaultListModel();
-        modelo.addElement("cartel1");
-        modelo.addElement("cartel2");
-        modelo.addElement("cartel3");
-        modelo.addElement("cartel4");
-        modelo.addElement("cartel5");
-        modelo.addElement("cartel6");
+        for (String lista: file.list()){
+              modelo.addElement(lista.substring(0, lista.indexOf(".")));
+        }
 
         lst_nombresCarteles.setModel(modelo);
     }
