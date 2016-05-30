@@ -6,7 +6,7 @@
     elementFormDefault="qualified">
     <xsd:complexType name="tipoPie">
         <xsd:sequence>
-            <xsd:element name="sponsor" maxOccurs="unbounded" type="xsd:string"/>
+            <xsd:element name="sponsor" type="xsd:string" maxOccurs="unbounded"  minOccurs="0"/>
             <xsd:element name="fondo" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>

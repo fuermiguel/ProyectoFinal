@@ -35,9 +35,10 @@ public class Plantilla2 extends JFrame{
     
     private void rellenarComponentes() {
         //Color de los fondos
-         pnl_fondoCabeceraP1.setBackground(Color.BLUE);
-         pnl_fondoPrincipalP1.setBackground(Color.BLUE);
-         pnl_fondoPiep1.setBackground(Color.BLUE);
+         pnl_fondoCabeceraP1.setBackground(plantilla.getColorFondo());
+         pnl_fondoPrincipalP1.setBackground(plantilla.getColorFondo());
+         pnl_fondoPiep1.setBackground(plantilla.getColorFondo());
+      
       
         //Imgaen Cabecera 
         ImageIcon cabecera = new ImageIcon("ImagenesCabecera"+
@@ -65,10 +66,11 @@ public class Plantilla2 extends JFrame{
         etiquetas.add(lbl_pie6);
         
         //relleno los sponsors de izquierda a derecha
-       /* 
+       
         int i= 0;
-        for(String sponsor : sponsors){          
-         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors/" + sponsor);
+        for(String sponsor : plantilla.getSponsors()){          
+         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"+
+                 System.getProperty("file.separator") + sponsor);
          Icon iconoSponsor;
              iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                       etiquetas.get(i).getWidth(), etiquetas.get(i).getHeight(),
@@ -78,7 +80,7 @@ public class Plantilla2 extends JFrame{
            
            i++;
         }
-    */
+    
     }
 
     /**

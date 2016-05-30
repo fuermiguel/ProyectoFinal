@@ -3,6 +3,7 @@
  */
 package objetos;
 
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class Cartel {
 private String cabecera;
 private String principal;
 private String pie;
-private String colorFondo;
+private Color colorFondo;
 private List<String> sponsors;
     public Cartel() {
     }
@@ -42,11 +43,11 @@ private List<String> sponsors;
         this.pie = pie;
     }
 
-    public String getColorFondo() {
+    public Color getColorFondo() {
         return colorFondo;
     }
 
-    public void setColorFondo(String colorFondo) {
+    public void setColorFondo(Color colorFondo) {
         this.colorFondo = colorFondo;
     }
 

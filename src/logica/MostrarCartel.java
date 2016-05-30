@@ -4,6 +4,7 @@ archivo xml.
  */
 package logica;
 
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +17,7 @@ import objetos.Cartel;
 import org.netbeans.xml.schema.cartel.TipoPlantilla;
 import pantallas.Plantilla1;
 import pantallas.Plantilla2;
+
 
 /**
  *
@@ -69,11 +71,18 @@ public class MostrarCartel {
             TipoPlantilla cartel = (TipoPlantilla) jaxbElement.getValue();
             // Establecemos los datos
             Cartel plantilla = new Cartel();
-            plantilla.setColorFondo( cartel.getCabecera().getFondo());
+            
+            StringToColor fondoCabecera =new StringToColor(cartel.getCabecera().getFondo());
+            
+            plantilla.setColorFondo(new Color(
+                    fondoCabecera.getR(),
+                    fondoCabecera.getG(),
+                    fondoCabecera.getB()
+            ));
             plantilla.setCabecera(cartel.getCabecera().getImagen());
-            plantilla.setColorFondo(cartel.getPrincipal().getFondo());
+           
             plantilla.setPrincipal(cartel.getPrincipal().getImagen());
-            plantilla.setColorFondo(cartel.getPie().getFondo());
+           
             plantilla.setSponsors(cartel.getPie().getSponsor());
            
 

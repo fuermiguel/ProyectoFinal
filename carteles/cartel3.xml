@@ -2,17 +2,17 @@
 <plantilla xmlns="http://xml.netbeans.org/schema/cartel">
     <cabecera>
         <imagen>adidas.png</imagen>
-        <fondo>java.awt.Color[r=0,g=255,b=0]</fondo>
+        <fondo>java.awt.Color[r=255,g=255,b=51]</fondo>
     </cabecera>
     <principal>
         <imagen>cocacola.png</imagen>
-        <fondo>java.awt.Color[r=0,g=255,b=0]</fondo>
+        <fondo>java.awt.Color[r=255,g=255,b=51]</fondo>
     </principal>
     <pie>
         <sponsor>adidas.png</sponsor>
         <sponsor>cocacola.png</sponsor>
         <sponsor>rebook.png</sponsor>
         <sponsor>redbull.png</sponsor>
-        <fondo>java.awt.Color[r=0,g=255,b=0]</fondo>
+        <fondo>java.awt.Color[r=255,g=255,b=51]</fondo>
     </pie>
 </plantilla>

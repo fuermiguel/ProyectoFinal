@@ -17,6 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -48,7 +50,7 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private String rutaImagenPie = "";
     private String nombreImagenPie;
 
-    private String colorFondo = "";
+    private Color colorFondo;
 
     /**
      * Creates new form CrearCartel
@@ -286,8 +288,8 @@ public class CrearCartel extends javax.swing.JInternalFrame {
 
     private void cbx_seleccionarSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_seleccionarSponsorActionPerformed
         lbl_PrevisualizarSponsor.setSize(94, 94);
-        ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"+ 
-                System.getProperty("file.separator") + cbx_seleccionarSponsor.getSelectedItem());
+        ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"
+                + System.getProperty("file.separator") + cbx_seleccionarSponsor.getSelectedItem());
         Icon iconoSponsor;
         iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
                 lbl_PrevisualizarSponsor.getWidth(), lbl_PrevisualizarSponsor.getHeight(),
@@ -384,40 +386,46 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                 StandardCopyOption.REPLACE_EXISTING,
                 StandardCopyOption.COPY_ATTRIBUTES
             };
-            
+
             Path fromCabecera = Paths.get(rutaImagenCabecera);
-            Path toCabecera = Paths.get("ImagenesCabecera" + 
-                    System.getProperty("file.separator") + nombreImagenCabecera);
+            Path toCabecera = Paths.get("ImagenesCabecera"
+                    + System.getProperty("file.separator") + nombreImagenCabecera);
             Files.copy(fromCabecera, toCabecera, options);
 
             cartel.setCabecera(nombreImagenCabecera);
-            
+
             Path fromPrincipal = Paths.get(rutaImagenPrincipal);
-            Path toPrincipal = Paths.get("ImagenesPrincipal" + 
-                    System.getProperty("file.separator")+ nombreImagenPrincipal);
+            Path toPrincipal = Paths.get("ImagenesPrincipal"
+                    + System.getProperty("file.separator") + nombreImagenPrincipal);
             Files.copy(fromPrincipal, toPrincipal, options);
-            
+
             cartel.setPrincipal(nombreImagenPrincipal);
-            
-            Path formPie = Paths.get(rutaImagenCabecera);
-            Path toPie = Paths.get("ImagenesPie"+  
-                    System.getProperty("file.separator") + nombreImagenPie);
+
+            Path formPie = Paths.get(rutaImagenPie);
+            Path toPie = Paths.get("ImagenesPie"
+                    + System.getProperty("file.separator") + nombreImagenPie);
             Files.copy(formPie, toPie, options);
-            
+
             cartel.setPie(nombreImagenPie);
-            
+
             cartel.setColorFondo(colorFondo);
-            //Guardar las imagenes en la carpeta imagenes sponsor
-            cartel.setSponsors(lst_sponsorsSelecionados.getSelectedValuesList());
+           
+            //Los sponsor los Gestiono desde otro sitio del programa. Por lo que
+           List<String> listaSponsors = new ArrayList();
+           
+           for(int i=0;i<lst_sponsorsSelecionados.getModel().getSize();i++){
+               listaSponsors.add(lst_sponsorsSelecionados.getModel().getElementAt(i));
+           }
+            
+            cartel.setSponsors(listaSponsors);
 
             new CrearCartelxml(cartel);
+
         } catch (Throwable ex) {
             Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No se creó el cartel ");
         }
-        /*} catch (IOException ex) {
-            Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+      
     }//GEN-LAST:event_btn_guardarActionPerformed
     class MiFiltro extends javax.swing.filechooser.FileFilter {
 
@@ -453,7 +461,7 @@ public class CrearCartel extends javax.swing.JInternalFrame {
         }
 
         public void stateChanged(ChangeEvent e) {
-            colorFondo = tcc.getColor().toString();
+            colorFondo = tcc.getColor();
             txt_colorFondo.setBackground(tcc.getColor());
         }
 
