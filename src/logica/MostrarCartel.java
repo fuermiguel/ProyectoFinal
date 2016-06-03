@@ -7,23 +7,34 @@ package logica;
 import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import objetos.Cartel;
 import org.netbeans.xml.schema.cartel.TipoPlantilla;
 import pantallas.Plantilla1;
 import pantallas.Plantilla2;
-
+import pantallas.VerCarteles;
+import static pantallas.VerCarteles.session;
 
 /**
  *
  * @author Miguel
  */
 public class MostrarCartel {
+
+    //Sesion que ya está abierta en VerCarteles
+    BaseXClient session = VerCarteles.session;
 
     public String fndCabecera, imgCabecera, fndPrincipal, imgPrincipal, fndPie;
     public List<String> sponsors;
@@ -62,29 +73,37 @@ public class MostrarCartel {
                     new FileInputStream("C:\\Users\\Miguel\\Documents"
                             + "\\NetBeansProjects\\Carteles1\\src\\"
                             + "carteles\\" + nombreCartel + ".xml"));*/
-            JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
+ /* JAXBElement jaxbElement = (JAXBElement) u.unmarshal(
                     new FileInputStream("carteles"+ System.getProperty("file.separator") +
-                            nombreCartel + ".xml"));
+                            nombreCartel + ".xml"));*/
+            BaseXClient.Query documento = session.query("db:open(\"pruebaXML\",\"" + nombreCartel
+                    + ".xml\")");
+
+            String text = documento.next();
+            Reader reader = new StringReader(text);
+            XMLInputFactory factory = XMLInputFactory.newInstance(); // Or newFactory()
+            XMLStreamReader xmlReader = factory.createXMLStreamReader(reader);
+
+            JAXBElement jaxbElement = (JAXBElement) u.unmarshal(xmlReader);
 
             // Obtenemos una instancia de tipo Plantilla para obtener un Objeto 
             //de tipo Plantilla
             TipoPlantilla cartel = (TipoPlantilla) jaxbElement.getValue();
             // Establecemos los datos
             Cartel plantilla = new Cartel();
-            
-            StringToColor fondoCabecera =new StringToColor(cartel.getCabecera().getFondo());
-            
+
+            StringToColor fondoCabecera = new StringToColor(cartel.getCabecera().getFondo());
+
             plantilla.setColorFondo(new Color(
                     fondoCabecera.getR(),
                     fondoCabecera.getG(),
                     fondoCabecera.getB()
             ));
             plantilla.setCabecera(cartel.getCabecera().getImagen());
-           
+
             plantilla.setPrincipal(cartel.getPrincipal().getImagen());
-           
+
             plantilla.setSponsors(cartel.getPie().getSponsor());
-           
 
             //Muestro la ventana de seleccion de plantilla
             switch (tipoPlantilla) {
@@ -126,6 +145,8 @@ public class MostrarCartel {
             System.out.println(je.getCause());
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
+        } catch (XMLStreamException ex) {
+            Logger.getLogger(MostrarCartel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

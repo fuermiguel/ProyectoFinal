@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Clase de la plantilla tipo1
  */
 package pantallas;
 
@@ -18,9 +16,9 @@ import objetos.Cartel;
  *
  * @author Miguel
  */
-public class Plantilla1 extends JFrame{
+public class Plantilla1 extends JFrame {
 
-   private Cartel plantilla;
+    private Cartel plantilla;
 
     /**
      * Creates new form MostrarPlantillas
@@ -28,58 +26,59 @@ public class Plantilla1 extends JFrame{
     public Plantilla1(Cartel plantilla) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-       this.plantilla = plantilla;
+        this.plantilla = plantilla;
         rellenarComponentes();
     }
-    
+
     private void rellenarComponentes() {
         //Color de los fondos
-         pnl_fondoCabeceraP1.setBackground(plantilla.getColorFondo());
-         pnl_fondoPrincipalP1.setBackground(plantilla.getColorFondo());
-         pnl_fondoPiep1.setBackground(plantilla.getColorFondo());
-         this.getContentPane().setBackground(plantilla.getColorFondo());
-         
+        pnl_fondoCabeceraP1.setBackground(plantilla.getColorFondo());
+        pnl_fondoPrincipalP1.setBackground(plantilla.getColorFondo());
+        pnl_fondoPiep1.setBackground(plantilla.getColorFondo());
+        this.getContentPane().setBackground(plantilla.getColorFondo());
+
         //Imagen Cabecera 
-        ImageIcon cabecera = new ImageIcon("ImagenesCabecera"+
-                System.getProperty("file.separator")+ plantilla.getCabecera());
+        ImageIcon cabecera = new ImageIcon("ImagenesCabecera"
+                + System.getProperty("file.separator") + plantilla.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
-                 lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
+                lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_cabecera.setIcon(iconoCabecera);
-        
+
         //Imagen Principal
-         ImageIcon principal = new ImageIcon("imagenesPrincipal"+
-                 System.getProperty("file.separator") + plantilla.getPrincipal());
-         Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
-                 lbl_principal.getWidth(), lbl_principal.getHeight(),
+        ImageIcon principal = new ImageIcon("imagenesPrincipal"
+                + System.getProperty("file.separator") + plantilla.getPrincipal());
+        Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
+                lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
         lbl_principal.setIcon(iconoPrincipal);
-        
+
         //Crear una lista de sponsor
-        List <JLabel>etiquetas = new ArrayList<JLabel>();
+        List<JLabel> etiquetas = new ArrayList<JLabel>();
         etiquetas.add(lbl_pie1);
         etiquetas.add(lbl_pie2);
         etiquetas.add(lbl_pie3);
         etiquetas.add(lbl_pie4);
         etiquetas.add(lbl_pie5);
         etiquetas.add(lbl_pie6);
-        
+
         //relleno los sponsors de izquierda a derecha
-       
-        int i= 0;
-        for(String sponsor : plantilla.getSponsors()){          
-         ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"+
-                 System.getProperty("file.separator") + sponsor);
-         Icon iconoSponsor;
-             iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
-                      etiquetas.get(i).getWidth(), etiquetas.get(i).getHeight(),
-                     Image.SCALE_DEFAULT));
-        
-         etiquetas.get(i).setIcon(iconoSponsor);
-           
-           i++;
+        int i = 0;
+        for (String sponsor : plantilla.getSponsors()) {
+            if (!sponsor.equals("") && sponsor != null) {
+                ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"
+                        + System.getProperty("file.separator") + sponsor);
+                Icon iconoSponsor;
+                iconoSponsor = new ImageIcon(imagenSponsor.getImage().getScaledInstance(
+                        etiquetas.get(i).getWidth(), etiquetas.get(i).getHeight(),
+                        Image.SCALE_DEFAULT));
+
+                etiquetas.get(i).setIcon(iconoSponsor);
+            }
+            i++;
+
         }
-    
+
     }
 
     /**
@@ -221,5 +220,4 @@ public class Plantilla1 extends JFrame{
     private javax.swing.JPanel pnl_fondoPrincipalP1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

@@ -1,15 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Clase implementa la pantalla de ver carteles y maneja los datos intorducidos
  */
 package pantallas;
 
 import java.awt.Image;
-import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import logica.BaseXClient;
+import logica.BaseXClient.Query;
 import logica.MostrarCartel;
 
 /**
@@ -17,6 +19,8 @@ import logica.MostrarCartel;
  * @author Miguel
  */
 public class VerCarteles extends javax.swing.JInternalFrame {
+
+    public static BaseXClient session = null;
 
     /**
      * Creates new form VerCarteles
@@ -32,14 +36,23 @@ public class VerCarteles extends javax.swing.JInternalFrame {
     metiendo los datos a pelo. habria que cogerlos de la base de datos.
      */
     private void listarCarteles() {
-        //Leer el nombre de los archivos en carteles
-        File file = new File("carteles" +  System.getProperty("file.separator"));
-       
         DefaultListModel modelo = new DefaultListModel();
-        for (String lista: file.list()){
-              modelo.addElement(lista.substring(0, lista.indexOf(".")));
-        }
 
+        try {
+            //Abrimos seción con la base de datos
+            
+            session = new BaseXClient("localhost", 1984, "admin", "admin");
+
+            //Realización de la consulta por medio de funciones de basex
+            //db:list  retorna el nombre de todos los documentos en la base de datos
+            Query listado = session.query("db:list(\"pruebaXml\")");       
+            while (listado.more()) {
+                String cadena = listado.next();          
+                modelo.addElement(cadena.substring(0, cadena.indexOf(".")));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(VerCarteles.class.getName()).log(Level.SEVERE, null, ex);
+        }
         lst_nombresCarteles.setModel(modelo);
     }
 
@@ -137,30 +150,30 @@ public class VerCarteles extends javax.swing.JInternalFrame {
     private void cbo_tipoPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_tipoPlantillaActionPerformed
         switch (cbo_tipoPlantilla.getSelectedIndex()) {
             case 0: {
-                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"+ 
-                        System.getProperty("file.separator")+"tipo1.PNG");
+                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"
+                        + System.getProperty("file.separator") + "tipo1.PNG");
                 Icon icon0;
                 icon0 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
-                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight()-10,
+                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight() - 10,
                         Image.SCALE_DEFAULT));
 
                 lbl_imagenPlantilla.setIcon(icon0);
-               
+
                 break;
             }
             case 1:
-                
-                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"+
-                        System.getProperty("file.separator")+"tipo2.PNG");
+
+                ImageIcon imagenPlantilla = new ImageIcon("imagenesplantillas"
+                        + System.getProperty("file.separator") + "tipo2.PNG");
                 Icon icon1;
-                
+
                 //El menos 10 es porque sino la etiqueta  crecia hacia abajo
                 icon1 = new ImageIcon(imagenPlantilla.getImage().getScaledInstance(
-                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight()-10,
+                        lbl_imagenPlantilla.getWidth(), lbl_imagenPlantilla.getHeight() - 10,
                         Image.SCALE_DEFAULT));
-               
+
                 lbl_imagenPlantilla.setIcon(icon1);
-              
+
                 break;
         }
         btn_ver.setEnabled(true);
@@ -168,8 +181,8 @@ public class VerCarteles extends javax.swing.JInternalFrame {
 
     private void btn_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verActionPerformed
         // si está seleccionado un cartel lo mostramos
-        if (!lst_nombresCarteles.isSelectionEmpty() &&  
-                cbo_tipoPlantilla.getSelectedIndex()!= -1) {
+        if (!lst_nombresCarteles.isSelectionEmpty()
+                && cbo_tipoPlantilla.getSelectedIndex() != -1) {
 
             new MostrarCartel(lst_nombresCarteles.getSelectedValue(),
                     cbo_tipoPlantilla.getSelectedIndex());
