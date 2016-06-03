@@ -13,7 +13,7 @@ public class StringToColor {
     private int r = 0;
     private int g = 0;
     private int b = 0;
-    private String cadena;
+    private String cadena="";
 
     public StringToColor(String cadena) {
         this.cadena = cadena;

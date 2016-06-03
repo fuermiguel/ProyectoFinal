@@ -21,27 +21,27 @@ import objetos.Cartel;
  */
 public class Plantilla2 extends JFrame {
 
-    private Cartel plantilla;
+    private Cartel objetoCartel;
 
     /**
      * Creates new form MostrarPlantillas
      */
-    public Plantilla2(Cartel plantilla) {
+    public Plantilla2(Cartel objetoCartel) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        this.plantilla = plantilla;
+        this.objetoCartel = objetoCartel;
         rellenarComponentes();
     }
 
     private void rellenarComponentes() {
         //Color de los fondos
-        pnl_fondoCabeceraP1.setBackground(plantilla.getColorFondo());
-        pnl_fondoPrincipalP1.setBackground(plantilla.getColorFondo());
-        pnl_fondoPiep1.setBackground(plantilla.getColorFondo());
+        pnl_fondoCabeceraP1.setBackground(objetoCartel.getColorFondo());
+        pnl_fondoPrincipalP1.setBackground(objetoCartel.getColorFondo());
+        pnl_fondoPiep1.setBackground(objetoCartel.getColorFondo());
 
         //Imgaen Cabecera 
         ImageIcon cabecera = new ImageIcon("ImagenesCabecera"
-                + System.getProperty("file.separator") + plantilla.getCabecera());
+                + System.getProperty("file.separator") + objetoCartel.getCabecera());
         Icon iconoCabecera = new ImageIcon(cabecera.getImage().getScaledInstance(
                 lbl_cabecera.getWidth(), lbl_cabecera.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -49,7 +49,7 @@ public class Plantilla2 extends JFrame {
 
         //Imagen Principal
         ImageIcon principal = new ImageIcon("imagenesPrincipal"
-                + System.getProperty("file.separator") + plantilla.getPrincipal());
+                + System.getProperty("file.separator") + objetoCartel.getPrincipal());
         Icon iconoPrincipal = new ImageIcon(principal.getImage().getScaledInstance(
                 lbl_principal.getWidth(), lbl_principal.getHeight(),
                 Image.SCALE_DEFAULT));
@@ -66,7 +66,7 @@ public class Plantilla2 extends JFrame {
 
         //relleno los sponsors de izquierda a derecha
         int i = 0;
-        for (String sponsor : plantilla.getSponsors()) {
+        for (String sponsor : objetoCartel.getSponsors()) {
             if (!sponsor.equals("") && sponsor != null) {
                 ImageIcon imagenSponsor = new ImageIcon("ImagenesEsponsors"
                         + System.getProperty("file.separator") + sponsor);
