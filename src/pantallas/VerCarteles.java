@@ -27,8 +27,17 @@ public class VerCarteles extends javax.swing.JInternalFrame {
      */
     public VerCarteles() {
         initComponents();
+        abrirSesion();
         listarCarteles();
         btn_ver.setEnabled(false);
+    }
+
+    private void abrirSesion() {
+        try {
+            session = new BaseXClient("localhost", 1984, "admin", "admin");
+        } catch (IOException ex) {
+            Logger.getLogger(VerCarteles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /*
@@ -37,17 +46,12 @@ public class VerCarteles extends javax.swing.JInternalFrame {
      */
     private void listarCarteles() {
         DefaultListModel modelo = new DefaultListModel();
-
         try {
-            //Abrimos seción con la base de datos
-            
-            session = new BaseXClient("localhost", 1984, "admin", "admin");
-
             //Realización de la consulta por medio de funciones de basex
             //db:list  retorna el nombre de todos los documentos en la base de datos
-            Query listado = session.query("db:list(\"pruebaXml\")");       
+            Query listado = session.query("db:list(\"pruebaXml\")");
             while (listado.more()) {
-                String cadena = listado.next();          
+                String cadena = listado.next();
                 modelo.addElement(cadena.substring(0, cadena.indexOf(".")));
             }
         } catch (IOException ex) {
@@ -76,6 +80,23 @@ public class VerCarteles extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Carteles");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         lst_nombresCarteles.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -188,6 +209,14 @@ public class VerCarteles extends javax.swing.JInternalFrame {
                     cbo_tipoPlantilla.getSelectedIndex());
         }
     }//GEN-LAST:event_btn_verActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        try {
+            session.close();
+        } catch (IOException ex) {
+            Logger.getLogger(VerCarteles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

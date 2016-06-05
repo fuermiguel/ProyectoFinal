@@ -7,8 +7,6 @@ package pantallas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -29,10 +27,10 @@ import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import logica.BaseXClient;
 import logica.CrearCartelxml;
 import objetos.Cartel;
 
@@ -41,6 +39,8 @@ import objetos.Cartel;
  * @author Miguel
  */
 public class CrearCartel extends javax.swing.JInternalFrame {
+
+    public static BaseXClient session = null;
 
     private DefaultListModel modelo;
     private String rutaImagenCabecera = "";
@@ -57,8 +57,17 @@ public class CrearCartel extends javax.swing.JInternalFrame {
      */
     public CrearCartel() {
         initComponents();
+        abrirSesion();
         llenarComboSoponsors();
         generarModeloListaSponsors();
+    }
+
+    private void abrirSesion() {
+        try {
+            session = new BaseXClient("localhost", 1984, "admin", "admin");
+        } catch (IOException ex) {
+            Logger.getLogger(VerCarteles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void generarModeloListaSponsors() {
@@ -409,25 +418,28 @@ public class CrearCartel extends javax.swing.JInternalFrame {
             cartel.setPie(nombreImagenPie);
 
             cartel.setColorFondo(colorFondo);
-           
+
             //Los sponsor los Gestiono desde otro sitio del programa. Por lo que
-           List<String> listaSponsors = new ArrayList();
-           
-           for(int i=0;i<lst_sponsorsSelecionados.getModel().getSize();i++){
-               listaSponsors.add(lst_sponsorsSelecionados.getModel().getElementAt(i));
-           }
-            
+            List<String> listaSponsors = new ArrayList();
+
+            for (int i = 0; i < lst_sponsorsSelecionados.getModel().getSize(); i++) {
+                listaSponsors.add(lst_sponsorsSelecionados.getModel().getElementAt(i));
+            }
+
             cartel.setSponsors(listaSponsors);
 
             new CrearCartelxml(cartel);
             
-            this.dispose();
+            //session.close();
 
+          
         } catch (Throwable ex) {
             Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No se creó el cartel ");
+        }finally{
+            //this.dispose();
         }
-      
+
     }//GEN-LAST:event_btn_guardarActionPerformed
     class MiFiltro extends javax.swing.filechooser.FileFilter {
 

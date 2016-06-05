@@ -32,19 +32,18 @@ public class MostrarCartel {
 
     //Sesion que ya está abierta en VerCarteles
     BaseXClient session = VerCarteles.session;
-
-    public String fndCabecera, imgCabecera, fndPrincipal, imgPrincipal, fndPie;
+    
     public List<String> sponsors;
-    private String nombreCartel;
-    private int tipoPlantilla;
+    private final String nombreCartel;
+    private final int tipoPlantilla;
 
     public MostrarCartel(String nombreCartel, int tipoPlantilla) {
         this.nombreCartel = nombreCartel;
         this.tipoPlantilla = tipoPlantilla;
-        cargaCartel(nombreCartel);
+        cargaCartel();
     }
 
-    private void cargaCartel(String nombreCartel) {
+    private void cargaCartel() {
         try {
            
             JAXBContext jaxbContext = JAXBContext.newInstance("org.netbeans.xml.schema.cartel");      
@@ -57,7 +56,7 @@ public class MostrarCartel {
 
             String text = documento.next();
             Reader reader = new StringReader(text);
-            XMLInputFactory factory = XMLInputFactory.newInstance(); // Or newFactory()
+            XMLInputFactory factory = XMLInputFactory.newInstance(); 
             XMLStreamReader xmlReader = factory.createXMLStreamReader(reader);
 
             JAXBElement jaxbElement = (JAXBElement) u.unmarshal(xmlReader);
