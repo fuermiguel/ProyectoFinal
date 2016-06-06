@@ -27,6 +27,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -50,7 +51,7 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private String rutaImagenPie = "";
     private String nombreImagenPie;
 
-    private Color colorFondo;
+    private Color colorFondo= new Color(255,255,255);
 
     /**
      * Creates new form CrearCartel
@@ -385,58 +386,61 @@ public class CrearCartel extends javax.swing.JInternalFrame {
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         try {
             Cartel cartel = new Cartel();//Objeto que contiene toda la información del cartel.
-
-            /*
+            if (!(rutaImagenCabecera.equals("") || rutaImagenPie.equals("")
+                    || rutaImagenPrincipal.equals(""))) {
+                /*
             Al mismo tiempo que creo el cartel tehgo que guardar las imagenes 
             seleccionadas en las carpetas correpondientes dentro del proyecto.
-             */
-            //Reemplazar si existe y atributos(opciones)
-            CopyOption[] options = new CopyOption[]{
-                StandardCopyOption.REPLACE_EXISTING,
-                StandardCopyOption.COPY_ATTRIBUTES
-            };
+                 */
+                //Reemplazar si existe y atributos(opciones)
+                CopyOption[] options = new CopyOption[]{
+                    StandardCopyOption.REPLACE_EXISTING,
+                    StandardCopyOption.COPY_ATTRIBUTES
+                };
 
-            Path fromCabecera = Paths.get(rutaImagenCabecera);
-            Path toCabecera = Paths.get("ImagenesCabecera"
-                    + System.getProperty("file.separator") + nombreImagenCabecera);
-            Files.copy(fromCabecera, toCabecera, options);
+                Path fromCabecera = Paths.get(rutaImagenCabecera);
+                Path toCabecera = Paths.get("ImagenesCabecera"
+                        + System.getProperty("file.separator") + nombreImagenCabecera);
+                Files.copy(fromCabecera, toCabecera, options);
 
-            cartel.setCabecera(nombreImagenCabecera);
+                cartel.setCabecera(nombreImagenCabecera);
 
-            Path fromPrincipal = Paths.get(rutaImagenPrincipal);
-            Path toPrincipal = Paths.get("ImagenesPrincipal"
-                    + System.getProperty("file.separator") + nombreImagenPrincipal);
-            Files.copy(fromPrincipal, toPrincipal, options);
+                Path fromPrincipal = Paths.get(rutaImagenPrincipal);
+                Path toPrincipal = Paths.get("ImagenesPrincipal"
+                        + System.getProperty("file.separator") + nombreImagenPrincipal);
+                Files.copy(fromPrincipal, toPrincipal, options);
 
-            cartel.setPrincipal(nombreImagenPrincipal);
+                cartel.setPrincipal(nombreImagenPrincipal);
 
-            Path formPie = Paths.get(rutaImagenPie);
-            Path toPie = Paths.get("ImagenesPie"
-                    + System.getProperty("file.separator") + nombreImagenPie);
-            Files.copy(formPie, toPie, options);
+                Path formPie = Paths.get(rutaImagenPie);
+                Path toPie = Paths.get("ImagenesPie"
+                        + System.getProperty("file.separator") + nombreImagenPie);
+                Files.copy(formPie, toPie, options);
 
-            cartel.setPie(nombreImagenPie);
+                cartel.setPie(nombreImagenPie);
 
-            cartel.setColorFondo(colorFondo);
+                cartel.setColorFondo(colorFondo);
 
-            //Los sponsor los Gestiono desde otro sitio del programa. Por lo que
-            List<String> listaSponsors = new ArrayList();
+                //Los sponsor los Gestiono desde otro sitio del programa. Por lo que
+                List<String> listaSponsors = new ArrayList();
 
-            for (int i = 0; i < lst_sponsorsSelecionados.getModel().getSize(); i++) {
-                listaSponsors.add(lst_sponsorsSelecionados.getModel().getElementAt(i));
+                for (int i = 0; i < lst_sponsorsSelecionados.getModel().getSize(); i++) {
+                    listaSponsors.add(lst_sponsorsSelecionados.getModel().getElementAt(i));
+                }
+
+                cartel.setSponsors(listaSponsors);
+
+                new CrearCartelxml(cartel, this);
+
+                //session.close();
+            }else{
+                JOptionPane.showMessageDialog(this, "Hay que seleccionar todos los campos");
             }
 
-            cartel.setSponsors(listaSponsors);
-
-            new CrearCartelxml(cartel);
-            
-            //session.close();
-
-          
         } catch (Throwable ex) {
             Logger.getLogger(CrearCartel.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No se creó el cartel ");
-        }finally{
+        } finally {
             //this.dispose();
         }
 

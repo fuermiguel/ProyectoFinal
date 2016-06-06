@@ -30,7 +30,7 @@ public class CrearCartelxml {
 
     BaseXClient session = CrearCartel.session;
 
-    public CrearCartelxml(Cartel cartel) throws Throwable {
+    public CrearCartelxml(Cartel cartel, CrearCartel ventanaCrearCartel) throws Throwable {
 
         JAXBContext jaxbContext = JAXBContext.newInstance("org.netbeans.xml.schema.cartel");
         Unmarshaller u = jaxbContext.createUnmarshaller();
@@ -86,9 +86,9 @@ public class CrearCartelxml {
         fichero.delete();
 
         JOptionPane.showMessageDialog(null, "Cartel creado con exito.");
+        
+        ventanaCrearCartel.dispose();
 
-        //Lo mostramos por salida estandar
-        // m.marshal(jaxbElement, System.out);
     }
 //Hay que leerlo de la base de datos
 
