@@ -389,11 +389,16 @@ public class CrearCartel extends javax.swing.JInternalFrame {
             if (!(rutaImagenCabecera.equals("") || rutaImagenPie.equals("")
                     || rutaImagenPrincipal.equals(""))) {
                 /*
-            Al mismo tiempo que creo el cartel tehgo que guardar las imagenes 
+            Al mismo tiempo que creo el cartel tengo que guardar las imagenes 
             seleccionadas en las carpetas correpondientes dentro del proyecto.
+                
+                
+                Modificamos el código para que las imagenes se guarder serializadas
+                como información del documento. Hasta ahora almacenabamos la dirección
+                cmo string
                  */
                 //Reemplazar si existe y atributos(opciones)
-                CopyOption[] options = new CopyOption[]{
+               /* CopyOption[] options = new CopyOption[]{
                     StandardCopyOption.REPLACE_EXISTING,
                     StandardCopyOption.COPY_ATTRIBUTES
                 };
@@ -401,21 +406,21 @@ public class CrearCartel extends javax.swing.JInternalFrame {
                 Path fromCabecera = Paths.get(rutaImagenCabecera);
                 Path toCabecera = Paths.get("ImagenesCabecera"
                         + System.getProperty("file.separator") + nombreImagenCabecera);
-                Files.copy(fromCabecera, toCabecera, options);
+                Files.copy(fromCabecera, toCabecera, options);*/
 
                 cartel.setCabecera(nombreImagenCabecera);
 
-                Path fromPrincipal = Paths.get(rutaImagenPrincipal);
+             /*   Path fromPrincipal = Paths.get(rutaImagenPrincipal);
                 Path toPrincipal = Paths.get("ImagenesPrincipal"
                         + System.getProperty("file.separator") + nombreImagenPrincipal);
-                Files.copy(fromPrincipal, toPrincipal, options);
+                Files.copy(fromPrincipal, toPrincipal, options);*/
 
                 cartel.setPrincipal(nombreImagenPrincipal);
 
-                Path formPie = Paths.get(rutaImagenPie);
+              /*  Path formPie = Paths.get(rutaImagenPie);
                 Path toPie = Paths.get("ImagenesPie"
                         + System.getProperty("file.separator") + nombreImagenPie);
-                Files.copy(formPie, toPie, options);
+                Files.copy(formPie, toPie, options);*/
 
                 cartel.setPie(nombreImagenPie);
 

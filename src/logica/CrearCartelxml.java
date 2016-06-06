@@ -48,7 +48,7 @@ public class CrearCartelxml {
         TipoPie pie = new TipoPie();
 
         //Asigno información del cartel que viene de la ventana crear cartel
-        cabecera.setImagen(cartel.getCabecera());
+        cabecera.setImagen(cartel.getCabecera());//Tengo que convertir la imagen a string
         cabecera.setFondo(cartel.getColorFondo().toString());
 
         principal.setImagen(cartel.getPrincipal());
