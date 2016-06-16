@@ -1,0 +1,15 @@
+<plantilla xmlns="http://xml.netbeans.org/schema/cartel">
+  <cabecera>
+    <imagen>cabecera1.png</imagen>
+    <fondo>java.awt.Color[r=204,g=204,b=204]</fondo>
+  </cabecera>
+  <principal>
+    <imagen>Fiesta del Deporte.jpg</imagen>
+    <fondo>java.awt.Color[r=204,g=204,b=204]</fondo>
+  </principal>
+  <pie>
+    <sponsor>cocacola.png</sponsor>
+    <sponsor>redbull.png</sponsor>
+    <fondo>java.awt.Color[r=204,g=204,b=204]</fondo>
+  </pie>
+</plantilla>

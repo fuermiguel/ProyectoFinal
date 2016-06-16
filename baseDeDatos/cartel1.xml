@@ -1,0 +1,22 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ns1:plantilla xmlns:ns1="http://xml.netbeans.org/schema/cartel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.netbeans.org/schema/cartel cartel.xsd">
+  <ns1:cabecera>
+    <ns1:imagen>cabecera1.png</ns1:imagen>
+    <ns1:fondo>java.awt.Color[r=0,g=255,b=0]</ns1:fondo>
+  </ns1:cabecera>
+  <ns1:principal>
+    <ns1:imagen>principal1.png</ns1:imagen>
+    <ns1:fondo>java.awt.Color[r=0,g=255,b=0]</ns1:fondo>
+  </ns1:principal>
+  <ns1:pie>
+    <ns1:sponsor>rebook.png</ns1:sponsor>
+    <ns1:sponsor>adidas.png</ns1:sponsor>
+    <ns1:sponsor>cocacola.png</ns1:sponsor>
+    <ns1:sponsor>redbull.png</ns1:sponsor>
+    <ns1:fondo>java.awt.Color[r=0,g=255,b=0]</ns1:fondo>
+  </ns1:pie>
+</ns1:plantilla>

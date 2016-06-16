@@ -1,0 +1,13 @@
+<plantilla xmlns="http://xml.netbeans.org/schema/cartel">
+  <cabecera>
+    <imagen>cabecera1.png</imagen>
+    <fondo>java.awt.Color[r=0,g=0,b=0]</fondo>
+  </cabecera>
+  <principal>
+    <imagen>cabecera1.png</imagen>
+    <fondo>java.awt.Color[r=0,g=0,b=0]</fondo>
+  </principal>
+  <pie>
+    <fondo>java.awt.Color[r=0,g=0,b=0]</fondo>
+  </pie>
+</plantilla>
