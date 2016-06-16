@@ -16,15 +16,20 @@ import javax.swing.JLabel;
 import objetos.Cartel;
 
 /**
+ * Clase que es una plantilla de tipo2 que se rellenará con 
+ * los valores que se le pasen para la formación de un cartel
  *
- * @author Miguel
+ * @author Miguel González Canales
+ * @version 1.0 16/06/2016
  */
 public class Plantilla2 extends JFrame {
 
     private Cartel objetoCartel;
 
     /**
-     * Creates new form MostrarPlantillas
+     * Constructor
+     * 
+     * @param objetoCartel Objeto con el contenido del cartel
      */
     public Plantilla2(Cartel objetoCartel) {
         initComponents();
@@ -32,7 +37,9 @@ public class Plantilla2 extends JFrame {
         this.objetoCartel = objetoCartel;
         rellenarComponentes();
     }
-
+/**
+ * Método que rellena la plantilla del cartel
+ */
     private void rellenarComponentes() {
         //Color de los fondos
         pnl_fondoCabeceraP1.setBackground(objetoCartel.getColorFondo());
@@ -211,9 +218,7 @@ public class Plantilla2 extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl_cabecera;
