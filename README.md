@@ -2,7 +2,7 @@
 
 Aplicación que crea carteles para eventos deportivos. 
 
-La aplicación está hecha en javaSE y utiliza conexión a base de datos nativa XML (BASEX)
+La aplicación está hecha en javaSE y utiliza conexión a base de datos nativa XML (BASEX) en combinación con Java Architecture for XML Binding (JAXB).
 
 Los carteles creados pueden verse en dos formatos diferentes.
 
